@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Tu Sitio de Películas y Series</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@1,100&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@1,100&family=Oswald&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+</head>
+
+<body>
+    <header>
+
+        <div class="logo">
+            <a href="./index.html"><img src="img/WhatsApp Image 2023-09-08 at 10.59.04.jpg" alt=""></a>
+        </div>
+
+        <div class="barra_busqueda">
+            <form action="search-result.html" method="get">
+                <input type="text" name="q" placeholder="Buscar...">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+
+        <div class="barra_inicio">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="favoritos.html">Favoritos</a></li>
+                    <li><a href="generos.html">Géneros</a></li>
+                    <li><a href="./detail-movie.html">Detalle Peliculas</a></li>
+                    <li><a href="./detail-generos.html">Detalle Generos</a></li>
+                    <li><a href="./detail-serie.html">Detalle Series</a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </header>
+
+    <main>
+
+        <section>
+            <h2>Genero en detalle:</h2>
+     
+            <h3 class="genre">Scary Movies</h3>
+            <h5 class="det-genre">Estas son las peliculas de terror:</h5>
+
+            <div class="movies-container">
+                <div class="movie">
+                    <a href="./detail-movie.html"><img src="img/ElConjuro1.jpg" alt=" "></a>
+                    <h3>El Conjuro</h3>
+                    <p>Fecha de Estreno: 2013 </p>
+                    <p>Duracion: 1h 52m </p>
+                    <a href="favoritos.html" class="add-fav">
+                        <i class="fa-solid fa-star fa-lg"></i>
+                    </a>
+                </div>
+                <div class="movie">
+                    <a href="./detail-movie.html"><img src="img/ElConjuro2.jpg" alt=" "></a>
+                    <h3>El Conjuro 2</h3>
+                    <p>Fecha de Estreno: 2016 </p>
+                    <p>Duracion: 2h 14m </p>
+                    <a href="favoritos.html" class="add-fav">
+                        <i class="fa-solid fa-star fa-lg"></i>
+                    </a>
+                </div>
+                <div class="movie">
+                    <a href="./detail-movie.html"><img src="img/Elconjuro3.jpg" alt=" "></a>
+                    <h3>El Conjuro 3: El Diablo me obligo a hacerlo</h3>
+                    <p>Fecha de Estreno: 2021 </p>
+                    <p>Duracion: 1h 52m </p>
+                    <a href="favoritos.html" class="add-fav">
+                        <i class="fa-solid fa-star fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+
+
+          
+
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <p>Equipo: Tomas Rein Matias Russo</p>
+    </footer>
+</body>
+
+</html>
