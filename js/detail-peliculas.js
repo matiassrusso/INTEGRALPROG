@@ -1,4 +1,3 @@
-// detail.js
 
 let acaVaLaAPIKey = '12f29e6635ed0ee57e31999f00b1e829';
 
@@ -10,18 +9,14 @@ const options = {
   }
 };
 
-// Obtener el ID de la película de la URL
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get('id');
 
-// URL para obtener detalles de la película
 let DetallePelicula = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${acaVaLaAPIKey}`;
 
-// Función para mostrar detalles de la película en la página
 function mostrarDetallePelicula(detalle) {
   const container = document.querySelector('.movie-det');
 
-  // Crear elementos y agregar detalles
   const movieTitle = document.createElement('h3');
   movieTitle.textContent = detalle.title;
 
@@ -45,7 +40,6 @@ function mostrarDetallePelicula(detalle) {
   const movieGenre = document.createElement('p');
   movieGenre.textContent = `Género: ${detalle.genres.map(genre => genre.name).join(', ')}`;
 
-  // Agregar elementos al contenedor
   container.appendChild(movieTitle);
   container.appendChild(movieImage);
   container.appendChild(movieOverview);
@@ -55,7 +49,6 @@ function mostrarDetallePelicula(detalle) {
   container.appendChild(movieGenre);
 }
 
-// Obtener detalles de la película y mostrarlos en la página
 fetch(DetallePelicula, options)
   .then(response => response.json())
   .then(data => mostrarDetallePelicula(data))

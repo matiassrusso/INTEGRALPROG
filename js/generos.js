@@ -1,54 +1,36 @@
-// Coloca tu API key de TMDB aquí
-const apiKey = '12f29e6635ed0ee57e31999f00b1e829';
+document.addEventListener("DOMContentLoaded", function () {
+    const genresContainer = document.getElementById("genres-container");
 
-// URL para obtener géneros de películas
-const movieGenresURL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
-
-// URL para obtener géneros de series
-const tvGenresURL = `https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}&language=en-US`;
-
-// Función para obtener y mostrar géneros
-function mostrarGeneros() {
-    const container = document.getElementById('genres-container');
-
-    // Obtener géneros de películas
-    fetch(movieGenresURL)
-        .then(response => response.json())
-        .then(data => {
-            const movieGenres = data.genres;
-            mostrarGenerosEnPagina(container, movieGenres, 'Películas');
-        })
-        .catch(error => console.error('Error al obtener géneros de películas:', error));
-
-    // Obtener géneros de series
-    fetch(tvGenresURL)
-        .then(response => response.json())
-        .then(data => {
-            const tvGenres = data.genres;
-            mostrarGenerosEnPagina(container, tvGenres, 'Series');
-        })
-        .catch(error => console.error('Error al obtener géneros de series:', error));
-}
-
-// Función para mostrar géneros en la página
-function mostrarGenerosEnPagina(container, genres, type) {
-    const genreTitle = document.createElement('h3');
-    genreTitle.textContent = `${type} - Géneros`;
-    container.appendChild(genreTitle);
-
-    genres.forEach(genre => {
-        if (genre && genre.name) {
-            const genreLink = document.createElement('a');
-            genreLink.href = `./detail-genero.html?name=${encodeURIComponent(genre.name)}&type=${type}`;
-            const genreName = document.createElement('h4');
-            genreName.textContent = genre.name;
-            genreLink.appendChild(genreName);
-            container.appendChild(genreLink);
-        } else {
-            console.warn('Se encontró un género nulo o sin nombre. Omitiendo:', genre);
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMmYyOWU2NjM1ZWQwZWU1N2UzMTk5OWYwMGIxZTgyOSIsInN1YiI6IjY1NTU5MTVlNTM4NjZlMDBmZjA3MDAyNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8ceBn6bgY-X2abPA_Lpk9hC8S2-qKcHYtWJgzu7MoH8'
         }
-    });
-}
+    };
 
-// Llamar a la función para mostrar géneros
-mostrarGeneros();
+    fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
+        .then(response => response.json())
+        .then(data => {
+            // Agrega la clase 'genres-row' al contenedor de géneros
+            genresContainer.classList.add("genres-row");
+
+            // Itera sobre los géneros y crea elementos HTML para cada uno
+            data.genres.forEach(genre => {
+                const genreElement = document.createElement("div");
+                genreElement.classList.add("genre");
+                genreElement.textContent = genre.name;
+
+                // Agrega un evento de clic para redirigir al detalle del género
+                genreElement.addEventListener("click", function () {
+                    window.location.href = `./detail-generos.html?genreId=${genre.id}`;
+                });
+
+                // Agrega el elemento de género al contenedor
+                genresContainer.appendChild(genreElement);
+            });
+        })
+        .catch(error => {
+            console.error("Error al obtener géneros:", error);
+        });
+});

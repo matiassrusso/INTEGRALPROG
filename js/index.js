@@ -19,10 +19,8 @@ function mostrarActores(actores) {
 
   actores.forEach(actor => {
     const actorElement = document.createElement('div');
-    actorElement.classList.add('movie'); // Utilizamos la clase 'movie' para que tengan el mismo estilo que las películas
-
+    actorElement.classList.add('movie'); 
     const actorLink = document.createElement('a');
-    // Puedes agregar una página de detalles para los actores si lo deseas
     const actorImage = document.createElement('img');
     actorImage.src = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
     actorImage.alt = actor.name;
@@ -43,7 +41,7 @@ function mostrarActores(actores) {
   });
 }
 
-function mostrarContenido(data, containerId) {
+function mostrarContenido(data, containerId, tipo) {
   const container = document.getElementById(containerId);
 
   data.forEach(item => {
@@ -51,7 +49,7 @@ function mostrarContenido(data, containerId) {
     contentElement.classList.add('movie');
 
     const contentLink = document.createElement('a');
-    contentLink.href = `./detail-movie.html?id=${item.id}`;
+    contentLink.href = `./detail-${tipo}.html?id=${item.id}`;
     const contentImage = document.createElement('img');
     contentImage.src = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
     contentImage.alt = item.title || item.name; 
@@ -82,12 +80,12 @@ function mostrarContenido(data, containerId) {
 
 fetch(PelículasPopulares, options)
   .then(response => response.json())
-  .then(data => mostrarContenido(data.results, 'moviesContainer'))
+  .then(data => mostrarContenido(data.results, 'moviesContainer', "movie"))
   .catch(err => console.error(err));
 
 fetch(SeriesPopulares, options)
   .then(response => response.json())
-  .then(data => mostrarContenido(data.results, 'seriesContainer'))
+  .then(data => mostrarContenido(data.results, 'seriesContainer', "serie"))
   .catch(err => console.error(err));
 
 fetch(ActoresPopulares, options)
